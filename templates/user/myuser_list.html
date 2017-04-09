@@ -2,6 +2,7 @@
 {% load helpers %}
 {% block content %}
   <h1>Users</h1>
+  {% if object_list %}
   <table class="table">
     <thead>
     <tr>
@@ -36,14 +37,12 @@
           Delete this user
         </a></td>
       </tr>
-    {% empty %}
-      <tr>
-        <td><span>No users yet.</span></td>
-      </tr>
-
     {% endfor %}
     </tbody>
   </table>
+  {% else %}
+  <h3>No users yet.</h3>
+  {% endif %}
   <a class="btn btn-warning" href="{% url 'user-create' %}">Create new
     user</a>
   <a class="btn btn-warning" href="{% url 'users-download' %}">Download
