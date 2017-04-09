@@ -2,20 +2,48 @@
 {% load helpers %}
 {% block content %}
   <h1>Users</h1>
-  <ul>
-    {% for object in object_list %}
-      <div>
-        {{ object.username }}|{{ object.birthday|date:"d/m/Y" }}|
-        {{ object.birthday|eligible }}|{{ object.random_number }}|
-        {{ object.random_number|fizzbuzz }}
-      </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <td><span>Detail</span></td>
+        <td><span>Username</span></td>
+        <td><span>Birthday</span></td>
+        <td><span>Eligible</span></td>
+        <td><span>Random Number</span></td>
+        <td><span>FuzzBizz</span></td>
+        <td></td>
+        <td></td>
+      </tr>
+      </thead>
+      <tbody>
+      {% for object in object_list %}
+        <tr>
+          <td><a class="btn btn-info"
+                 href="{% url 'user-detail' pk=object.pk %}">
+            Details
+          </a></td>
+          <td><span>{{ object.username }}</span></td>
+          <td><span>{{ object.birthday|date:"d/m/Y" }}</span></td>
+          <td><span>{{ object.birthday|eligible }}</span></td>
+          <td><span>{{ object.random_number }}</span></td>
+          <td><span>{{ object.random_number|fizzbuzz }}</span></td>
+          <td><a class="btn btn-info"
+                 href="{% url 'user-update' pk=object.pk %}">
+            Update this user
+          </a></td>
+          <td><a class="btn btn-danger"
+                 href="{% url 'user-delete' pk=object.pk %}">
+            Delete this user
+          </a></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td><span>No users yet.</span></td>
+        </tr>
 
-    {% empty %}
-      <li>No users yet.</li>
-      <a href="{% url 'user-create' %}">Create new user</a>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'users-download' %} ">
-    Download
-  </a>
+      {% endfor %}
+      </tbody>
+    </table>
+    <a class="btn btn-success" href="{% url 'user-create' %}">Create new
+      user</a>
 {% endblock %}

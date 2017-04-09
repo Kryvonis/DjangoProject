@@ -24,8 +24,8 @@ urlpatterns = [
     url(r'^add/$', UserCreate.as_view(), name='user-create'),
     url(r'^update/(?P<pk>[0-9]+)/$', UserUpdate.as_view(), name='user-update'),
     url(r'^delete/(?P<pk>[0-9]+)/$', UserDelete.as_view(),
-        name='users-delete'),
+        name='user-delete'),
     url(r'^download/$', DownloadView.as_view(), name='users-download'),
-    url(r'^$', UserListView.as_view(), name='user-list'),
+
 
 ]

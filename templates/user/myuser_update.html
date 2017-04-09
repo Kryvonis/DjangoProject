@@ -1,7 +1,50 @@
 {% extends 'common/base.html' %}
 {% block content %}
   <form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save"/>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username</label>
+      <input type="text"
+             name="username"
+             maxlength="150"
+             required=""
+             value="{{ form.username.value }}"
+             class="form-control"
+             id="id_username"
+             placeholder="Username">
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email"
+             class="form-control"
+             id="id_email"
+             maxlength="254"
+             name="email"
+             value="{{ form.email.value }}"
+             placeholder="Email">
+
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1">Birthday</label>
+      <input type="text"
+             class="form-control"
+             id="id_birthday"
+             name="birthday"
+             value="{{ form.birthday.value|date:"Y-m-d"}}"
+             placeholder="date in format YYYY-MM-DD">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Random Number</label>
+      <input type="number"
+             class="form-control"
+             min="0"
+             max="100"
+             id="id_random_number"
+             name="random_number"
+             value="{{ form.random_number.value }}"
+             placeholder="Random Number">
+    </div>
+    <button type="submit" class="btn btn-default">Save</button>
   </form>
 {% endblock %}

@@ -16,10 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from src.user.views import UserListView
+
 handler404 = 'src.user.views.handler404'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('src.user.urls')),
+    url(r'^$', UserListView.as_view(), name='user-list'),
 
 ]
