@@ -8,6 +8,7 @@ from django.views.generic.edit import DeleteView
 from django.views import View
 
 from django.http.response import HttpResponse
+from django.http import Http404
 from django.utils import timezone
 from django.urls import reverse_lazy
 from django.shortcuts import render_to_response
@@ -70,7 +71,7 @@ class DownloadView(View):
     def get(self, request, *args, **kwargs):
         users = MyUser.objects.all()
         if len(users) == 0:
-            return HttpResponse(status=404)
+            raise Http404
         filename = '{}.csv'.format(timezone.now().strftime('%c'))
 
         response = HttpResponse(content_type='text/csv')
