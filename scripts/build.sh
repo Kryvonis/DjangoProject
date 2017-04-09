@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 sudo mkdir venv
-virtualenv -p /usr/bin/python3 venv
+virtualenv -p python3 venv
 . $(pwd)/venv/bin/activate
 pip install -r $(pwd)/requirements.txt
 cd ..
