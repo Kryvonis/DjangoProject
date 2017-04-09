@@ -70,7 +70,7 @@ class DownloadView(View):
     def get(self, request, *args, **kwargs):
         users = MyUser.objects.all()
         if len(users) == 0:
-            return HttpResponse(status=400)
+            return render_to_response('common/404.html')
         filename = '{}.csv'.format(timezone.now().strftime('%c'))
 
         response = HttpResponse(content_type='text/csv')
