@@ -1,4 +1,5 @@
 import csv
+import random
 
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
@@ -11,7 +12,7 @@ from django.http.response import HttpResponse
 from django.http import Http404
 from django.utils import timezone
 from django.urls import reverse_lazy
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 
 from src.user.models import MyUser
 from src.user.templatetags.helpers import eligible, fizzbuzz
@@ -45,8 +46,9 @@ class UserCreate(CreateView):
             username=form.cleaned_data['username'],
             email=form.cleaned_data['email'],
             password=form.cleaned_data['password'],
+            random_number=random.randrange(100),
         )
-        return HttpResponse(status=204)
+        return redirect(reverse_lazy('user-list'))
 
 
 class UserUpdate(UpdateView):
