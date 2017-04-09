@@ -3,7 +3,7 @@
 sudo mkdir venv
 sudo virtualenv -p python3 venv
 . $(pwd)/venv/bin/activate
-pip install -r $(pwd)/requirements.txt
+sudo pip install -r $(pwd)/requirements.txt
 cd ..
 sudo cp /src/settings/local.sample.py /srv/www/IgoStories/igostories/settings/local.py
 python manage.py makemigrations
