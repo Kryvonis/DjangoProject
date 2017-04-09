@@ -7,12 +7,8 @@
 
 ## List of what done
 
-1.Setup LTS Django - ok
-
-2.Extend the User model - ok
-
-3.Create views - ok
-
-4.Create two template tags - ok
-
-5.Optional task - ok
+1. Setup LTS Django - ok
+2. Extend the User model - ok
+3. Create views - ok
+4. Create two template tags - ok
+5. Optional task - ok
