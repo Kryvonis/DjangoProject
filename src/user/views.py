@@ -40,9 +40,8 @@ class UserListView(ListView):
 
 class UserCreate(CreateView):
     model = MyUser
-    fields = ['username', 'email', 'password']
+    fields = ['username', 'email', 'password','birthday']
     template_name_suffix = '_create'
-    success_url = reverse_lazy('user-list')
 
     def form_valid(self, form):
         user = MyUser.objects.create_user(
@@ -51,7 +50,6 @@ class UserCreate(CreateView):
             password=form.cleaned_data['password'],
         )
         return HttpResponse(status=204)
-        # return super().form_valid(form)
 
 
 class UserUpdate(UpdateView):
@@ -74,6 +72,9 @@ def handler404(request):
 
 class DownloadView(View):
     def get(self, request, *args, **kwargs):
+        users = MyUser.objects.all()
+        if len(users) == 0:
+            return HttpResponse(status=400)
         filename = '{}.csv'.format(timezone.now().strftime('%c'))
 
         response = HttpResponse(content_type='text/csv')
@@ -95,7 +96,7 @@ class DownloadView(View):
             'BizzFuzz',
 
         ])
-        for object in MyUser.objects.all():
+        for object in users:
             csvfile.writerow([
                 object.username,
                 object.birthday.strftime("%d/%m/%Y"),

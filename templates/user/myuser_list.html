@@ -12,6 +12,7 @@
 
     {% empty %}
       <li>No users yet.</li>
+      <a href="{% url 'user-create' %}">Create new user</a>
     {% endfor %}
   </ul>
   <a href="{% url 'users-download' %} ">
