@@ -1,0 +1,20 @@
+{% extends 'common/base.html' %}
+{% load helpers %}
+{% block content %}
+  <h1>Users</h1>
+  <ul>
+    {% for object in object_list %}
+      <div>
+        {{ object.username }}|{{ object.birthday|date:"d/m/Y" }}|
+        {{ object.birthday|eligible }}|{{ object.random_number }}|
+        {{ object.random_number|fizzbuzz }}
+      </div>
+
+    {% empty %}
+      <li>No users yet.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'users-download' %} ">
+    Download
+  </a>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'common/base.html' %}
+{% load helpers %}
+{% block content %}
+  <h1>Username:{{ object.username }}</h1>
+  <p>Birthday: {{ object.birthday|date }}</p>
+  <p>Eligible: {{ object.birthday|eligible }}</p>
+  <p>RandomNumber: {{ object.random_number }}</p>
+  <p>FizzBuzz: {{ object.random_number|fizzbuzz }}</p>
+{% endblock %}
