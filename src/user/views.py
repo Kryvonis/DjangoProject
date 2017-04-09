@@ -1,4 +1,3 @@
-import os
 import csv
 
 from django.views.generic.detail import DetailView
@@ -12,9 +11,6 @@ from django.http.response import HttpResponse
 from django.utils import timezone
 from django.urls import reverse_lazy
 from django.shortcuts import render_to_response
-from django.utils.encoding import smart_str
-from django.conf import settings
-# Create your views here.
 
 from src.user.models import MyUser
 from src.user.templatetags.helpers import eligible, fizzbuzz
@@ -40,11 +36,11 @@ class UserListView(ListView):
 
 class UserCreate(CreateView):
     model = MyUser
-    fields = ['username', 'email', 'password','birthday']
+    fields = ['username', 'email', 'password', 'birthday']
     template_name_suffix = '_create'
 
     def form_valid(self, form):
-        user = MyUser.objects.create_user(
+        MyUser.objects.create_user(
             username=form.cleaned_data['username'],
             email=form.cleaned_data['email'],
             password=form.cleaned_data['password'],
