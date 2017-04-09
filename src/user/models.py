@@ -1,5 +1,3 @@
-import random
-
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
@@ -16,7 +14,6 @@ class MyUser(AbstractUser):
         null=True,
     )
     random_number = fields.IntegerRangeField(
-        default=random.randrange(100),
         min_value=0, max_value=100,
         null=True,
         blank=True,
